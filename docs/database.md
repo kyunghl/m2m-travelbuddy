@@ -122,3 +122,9 @@ SELECT * FROM flightspecial;
 ```
 
 ![tables.png](./assets/tables.png)
+
+다음 명령어로 mysql client를 종료합니다.
+
+```sql
+quit;
+```

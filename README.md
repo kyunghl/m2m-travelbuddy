@@ -19,38 +19,9 @@
 이번 실습을 진행하면서 우리는 [TravelBuddy.zip](https://workshops.devax.academy/monoliths-to-microservices/module1/files/TravelBuddy.zip)라는 가상의 웹 애플리케이션을 활용하여 마이크로서비스 아키텍처로 전환하는 예제로 사용할 것입니다.
 
 - 먼저 [TravelBuddy 애플리케이션을 컨테이너화](./docs/containerize.md)합니다.
-- 데이터베이스를 구성합니다.
+- [데이터베이스를 구성](./docs/database.md)합니다.
 - TravelBuddy 애플리케이션을 EKS에 배포합니다.
 
-buildspec.yml 파일의 내용을 통해 빌드 방법을 확인하고 컨테이너로 실행하기 위해서 Dockerfile을 작성
+## TravelBuddy 애플리케이션 컨테이너화
 
-```Dockerfile
-FROM maven:3.3.9-jdk-8 AS build
-
-WORKDIR /app
-COPY pom.xml .
-RUN mvn dependency:go-offline
-COPY src ./src
-RUN mvn -f pom.xml clean package
-
-FROM tomcat:9-jdk11
-COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/travelbuddy.war
-EXPOSE 8080
-
-CMD ["catalina.sh", "run"]
-```
-
-```bash
-# Container 이미지 생성
-docker build -t travelbuddy .
-
-# CF로 배포한 환경의 RDS 주소
-export RDS_ENDPOINT=<RDS_ENDPOINT>
-
-# env.yaml 파일의 내용을 확인하여 환경변수를 주입하여 컨테이너 실행
-docker run --rm \
-  -e JDBC_CONNECTION_STRING="jdbc:mysql://${RDS_ENDPOINT}:3306/travelbuddy?useSSL=false" \
-  -e JDBC_UID=root \
-  -e JDBC_PWD=labpassword \
-  -dp 8080:8080 travelbuddy
-```
+- [TravelBuddy 애플리케이션을 컨테이너화](./docs/containerize.md) 내용에 따라서 컨테이너 이미지를 생성합니다.
