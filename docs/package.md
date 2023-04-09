@@ -1,5 +1,11 @@
 # 패키지 구조
 
+## Agenda
+
+- 계층화를 하는 이유
+- Layered Architecture
+- hotelspecial 패키지 구조 설명
+
 ## 계층화를 하는 이유
 
 계층화가 필요한 이유를 알아봅니다.
@@ -39,7 +45,7 @@ Infrastructure
 - 서비스 및 비지니스와 구현 기술 분리
 - DIP로써 다른 layer에 기술이 주입됨
 
-## Package 구조
+## Hotelspecial Package 구조
 
 - 네 가지 layer 별로 프로젝트를 분리
 - 프로젝트 단위로 의존성을 정의하여 layer 간 의존성을 일부 강제화

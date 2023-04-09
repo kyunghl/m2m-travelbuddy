@@ -2,6 +2,13 @@
 
 이 실습에서는 TravelBuddy 애플리케이션을 컨테이너화 하는 방법을 학습니다. 기존에 운영중인 Java와 maven을 이용하는 TravelBuddy 애플리케이션이 제공되므로, 우리는 처음부터 애플리케이션을 빌드하는 대신 컨테이너화 하는 것에만 집중하여 학습을 진행합니다.
 
+## Agenda
+
+- 준비하기
+- TravelBuddy 프로젝트 살펴보기
+- 바이너리 및 컨테이너 이미지 빌드하기
+- ECR에 이미지 푸시하기
+
 ## 준비하기
 
 먼저 다음과 같이 `~/environment`에 [TravelBuddy.zip](https://workshops.devax.academy/monoliths-to-microservices/module1/files/TravelBuddy.zip) 파일을 받아서 압축해제합니다.
@@ -54,22 +61,14 @@ docker build -t travelbuddy .
 docker run -it --rm travelbuddy /bin/bash
 ```
 
-```Dockerfile
-FROM maven:3.3.9-jdk-8 AS build
+### Multi-stage build 방식으로 TravelBuddy 컨테이너 이미지 빌드하기
 
-WORKDIR /app
-COPY pom.xml .
-RUN mvn dependency:go-offline
-COPY src ./src
-RUN mvn -f pom.xml clean package
+Dockerfile 예시를 확인하기 전에 직접 Dockerfile을 작성하여 컨테이너 이미지를 빌드해보세요.
 
-FROM tomcat:9-jdk11
+- 힌트 1: maven 베이스 이미지를 사용하여 war 파일을 빌드
+- 힌트 2: tomcat 베이스 이미지를 사용하여 TravelBuddy 컨테이너 이미지 빌드
 
-COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/travelbuddy.war
-EXPOSE 8080
-
-CMD ["catalina.sh", "run"]
-```
+Dockerfile 예시는 prepare/Dockerfile에 있습니다.
 
 ## ECR에 이미지 푸시하기
 

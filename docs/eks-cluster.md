@@ -1,5 +1,11 @@
 # EKS Cluster 생성
 
+## Agenda
+
+- eksctl을 사용하여 EKS 클러스터 생성하기
+- (Optional) 콘솔 권한 추가하기
+- 현재의 아키텍처 리뷰
+
 ## eksctl을 사용하여 EKS 클러스터 생성하기
 
 ```bash

@@ -1,5 +1,14 @@
 # TravelBuddy 애플리케이션을 EKS에 배포
 
+## Agenda
+
+- Bastion 호스트에 접속해서 TravelBuddy 애플리케이션 실행해보기
+  - Docker 설치
+  - TravelBuddy 컨테이너 실행
+- EKS 배포
+  - manifest 준비하기
+  - manifest로 TravelBuddy 배포하기
+
 ## Bastion 호스트에 접속해서 TravelBuddy 애플리케이션 실행해보기
 
 EC2 > Instances로 이동하여, bastion 호스트를 선택한 후 Connect 버튼을 클릭하여 SSH client 접속 명령어를 복사합니다.
@@ -34,7 +43,7 @@ sudo usermod -a -G docker ec2-user
 
 참고: [Amazon Linux 2에 Docker 설치](https://docs.aws.amazon.com/ko_kr/AmazonECS/latest/developerguide/create-container-image.html#create-container-image-install-docker)
 
-### Docker Engine을 이용하여 TravelBuddy 컨테이너 실행해보기
+### TravelBuddy 컨테이너 실행
 
 #### STEP 1. Docker Login
 
@@ -87,7 +96,9 @@ curl localhost:8080/travelbuddy/
 docker stop <컨테이너 이름>
 ```
 
-## EKS 배포를 위한 manifest 준비하기
+## EKS 배포
+
+### manifest 준비하기
 
 manifests 폴더 (/home/ec2-user/environment/manifests)로 이동하여 아래의 값을 붙여넣습니다. 이 때, 이미지 값에는 ECR에 push한 이미지의 URL 값을 넣습니다.
 
@@ -184,7 +195,7 @@ spec:
 EOF
 ```
 
-매니페스트를 배포합니다.
+### manifest로 배포하기
 
 ```bash
 kubectl apply -f frontend-deployment.yaml

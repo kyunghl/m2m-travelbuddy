@@ -1,5 +1,11 @@
 # Strangler-Fig Pattern
 
+## Agenda
+
+- 실행 순서
+- 적용 대상
+- 예시: HTTP Reverse Proxy
+
 ## 실행 순서
 
 - Migrate할 대상 시스템의 구성 요소들을 식별
@@ -18,7 +24,7 @@ Strangler fig 패턴의 핵심이 점진적으로 migrate할 수 있는 것 뿐�
 > - Strangler Fig
 > - Parallel run
 > - Canary release
-> - Feature toggle ?
+> - Feature toggle
 
 ## 적용 대상
 

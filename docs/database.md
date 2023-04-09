@@ -1,5 +1,15 @@
 # Database Setup
 
+## Agenda
+
+- RDS MySQL 인스턴스 생성
+- Bastion host 프로비저닝
+- 인스턴스에 IAM Role 부여하기
+- MySQL 설정하기
+  - Cloud9에서 bastion 호스트에 접속
+  - MySQL 클라이언트 설치하기
+  - RDS 접속 및 데이터베이스 초기 구성
+
 ## RDS MySQL 인스턴스 생성
 
 RDS 인스턴스는 CloudFormation을 이용하여 배포합니다.
@@ -46,7 +56,7 @@ EC2 콘솔에서 위에서 생성한 bastion 호스트 인스턴스를 선택 �
 IAM Role에서 m2m-admin을 선택한 후, Save 버튼을 클릭합니다.
 ![modify-role.png](./assets/modify-role.png)
 
-## MySQL에 접속하고 설정하기
+## MySQL 설정하기
 
 ### Cloud9에서 bastion 호스트에 접속
 
@@ -87,10 +97,10 @@ EC2 > instances로 이동하여 bastion 호스트를 선택한 후 Security 탭�
 ### MySQL 클라이언트 설치하기
 
 ```bash
-sudo yum -y install mysql
+sudo yum -y install mysql
 ```
 
-### RDS 접속
+### RDS 접속 및 데이터베이스 초기 구성
 
 ```bash
 mysql -u root --password=labpassword -h <rds_host>

@@ -49,15 +49,15 @@ Agenda
 
 - 컨테이너화 한 TravelBuddy 애플리케이션을 [EKS에 배포](./docs/deploy.md)합니다.
 
-## 이론 : Monolith란?
+## Monolith란?
 
 [Monolith](./docs/monolith.md)의 개념을 간단히 살펴보고 몇 가지 개선 방법을 알아봅니다.
 
-## 이론 : Microservice란?
+## Microservice란?
 
 [Microservice](./docs/%08microservices.md)의 개념을 간단히 살펴보고, 어떤 경우에 마이크로서비스가 필요한지 토론해봅니다.
 
-## 세션 : HotelSpecial Microservice 애플리케이션
+## HotelSpecial Microservice 애플리케이션
 
 - Layered architecture를 반영한 [Package 구조](./docs/package.md)를 살펴봅니다.
 - Docker compose를 활용하여 sandbox 환경을 구성하는 방법을 알아봅니다.

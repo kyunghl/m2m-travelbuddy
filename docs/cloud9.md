@@ -2,6 +2,22 @@
 
 IDE로 Cloud9을 사용하기 위해서 Cloud9 환경을 시작하고, 각종 도구들을 설치합니다.
 
+## Agenda
+
+- Cloud9 시작하기
+  - AWS Cloud9으로 IDE 구성
+  - IAM Role 생성
+  - IDE(AWS Cloud9 인스턴스)에 IAM Role 부여
+  - IDE에서 IAM 설정 업데이트
+- EKS 관련 도구 설치
+  - kubectl 설치
+  - eksctl 설치
+- 기타 도구 설치 및 구성
+  - AWS CLI 업데이트
+  - jq 설치하기
+  - bash-completion 설치하기
+- Cloud9 추가 설정하기
+
 ## Cloud9 시작하기
 
 AWS Cloud9으로 실습 환경을 구축하는 순서는 아래와 같습니다.

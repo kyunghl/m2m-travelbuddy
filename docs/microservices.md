@@ -2,9 +2,16 @@
 
 _Monolith to Microservices_ - Sam Newman
 
+## Agenda
+
 - 배포 독립성
 - 비즈니스 도메인 중심으로 설계
 - 자체적으로 데이터를 소유
+- 마이크로서비스의 Pros and Cons
+- Microservice Premium
+- 목표에 대한 이해
+- 마이크로서비스를 선택해야 하는 이유는 무엇입니까?
+- 마이크로서비스가 나쁜 선택이 되는 경우는 언제입니까?
 
 ## 배포 독립성
 
@@ -51,4 +58,28 @@ Microservice로 전환해야 하는 정확한 기준을 제시하기에는 아�
 - 복잡성이 일정 수준으로 높아지면 생산성이 급격히 떨어지는 구간이 존재
   ![productivity.png](./assets/productivity.png)
 
-출처: https://martinfowler.com/bliki/MicroservicePremium.html
+출처: [Microservice Premium](https://martinfowler.com/bliki/MicroservicePremium.html)
+
+## 목표에 대한 이해
+
+- 마이크로서비스는 목표가 아니며, 마이크로서비스는 성공을 보장하지 않습니다.
+- 세 가지 중요한 질문
+  - 달성하고자 하는 것이 무엇입니까?
+  - 마이크로서비스 사용에 대한 대안을 생각해 보셨습니까?
+  - 전환이 작동하는지 어떻게 알 수 있습니까?
+
+## 마이크로서비스를 선택해야 하는 이유는 무엇입니까?
+
+- 팀 자율성 향상
+- 출시 시간 단축
+- 부하에 대해 비용 효율적으로 확장
+- 안정성 향상
+- 개발자 수 확장
+- 신기술 수용
+
+## 마이크로서비스가 나쁜 선택이 되는 경우는 언제입니까?
+
+- 도메인이 명확하지 않을 때
+- 스타트업
+- 고객이 설치하여 관리하는 소프트웨어
+- 정당한 이유가 없을 때
