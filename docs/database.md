@@ -2,28 +2,15 @@
 
 ## RDS MySQL 인스턴스 생성
 
-AWS 콘솔에서 RDS Service로 이동한 후 Create database를 클릭합니다.
+RDS 인스턴스는 CloudFormation을 이용하여 배포합니다.
 
-Create database 화면에서 `Standard create`, Engine으로는 `MySQL`, Engine Version은 `MySQL 8.0.32`를 선택합니다.
-![db1.png](./assets/db1.png)
+CloudFormation 콘솔로 이동하여 `Create stack` > `With new resources (standard)`를 클릭하여 Create stack 화면으로 진입합니다.
 
-Template에서는 이번 실습에서는 상용 구축을 하는 것은 아니므로 `Dev/Test`를 선택합니다.
-![db3.png](./assets/db3.png)
+Prepare template는 `Template is ready`를 선택하고, Specify template에서 `Upload a template file`을 선택한 후, `Choose file` 버튼을 클릭하여 [prepare/rds.template](../prepare/rds.template) 파일을 업로드합니다.
 
-가용성 설정은 `Multi-AZ DB instance`를 선택합니다.
-![db5.png](./assets/db5.png)
+Specify stack details 화면이 나타나면, Stack name으로 `TracelBuddyRds`를 입력하고, PrivateSubnetIds에는 EKS 클러스터의 private subnet 두 개를 선택합니다. VpcId에는 EKS 클러스터의 VpcId를 선택합니다.
 
-설정 값으로는 DB 이름으로 `travelbuddy`를 입력하고, 마스터 유저이름을 `root`, 패스워드를 `labpassword`라고 입력합니다.
-![db6.png](./assets/db6.png)
-
-인스턴스 설정은 Burstable class로 `db.t3.small`을 선택합니다.
-![db7.png](./assets/db7.png)
-
-저장소는 기본 설정을 유지하고,
-![db8.png](./assets/db8.png)
-
-(중요) 접근성 설정에서는 이전 단계에서 생성한 **EKS 클러스터와 동일한 VPC를 선택**합니다. 나머지 설정은 유지하고 Create를 클릭합니다. 기본 설정으로 public 접속을 차단한 것을 기억합니다.
-![db9.png](./assets/db9.png)
+Next를 클릭해서 RDS를 생성합니다.
 
 ## Bastion host 프로비저닝
 
@@ -50,6 +37,14 @@ OS는 `Amazon Linux 2`를 선택합니다.
 
 요약 내용을 확인한 후 `Launch instance` 버튼을 클릭하여 인스턴스를 시작합니다.
 ![bastion8.png](./assets/bastion8.png)
+
+## 인스턴스에 IAM Role 부여하기
+
+EC2 콘솔에서 위에서 생성한 bastion 호스트 인스턴스를 선택 후, Actions > Security > Modify IAM Role을 클릭합니다.
+![attach-role.png](./assets/attach-role.png)
+
+IAM Role에서 m2m-admin을 선택한 후, Save 버튼을 클릭합니다.
+![modify-role.png](./assets/modify-role.png)
 
 ## MySQL에 접속하고 설정하기
 

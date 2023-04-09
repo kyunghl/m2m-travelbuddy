@@ -68,13 +68,7 @@ FROM tomcat:9-jdk11
 COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/travelbuddy.war
 EXPOSE 8080
 
-# Unprivileged user setup
-RUN groupadd --gid 1000 tomcat \
-  && useradd --uid 1000 --gid 1000 \
-    --shell /bin/bash --create-home tomcat
-
-USER tomcat
-ENTRYPOINT ["catalina.sh", "run"]
+CMD ["catalina.sh", "run"]
 ```
 
 ## ECR에 이미지 푸시하기

@@ -1,0 +1,42 @@
+Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: VPC ID to use
+  PrivateSubnetIds:
+    Type: List<AWS::EC2::Subnet::Id>
+    Description: Comma separated list of private subnet IDs
+Resources:
+  DBinstanceSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: Subnet group for DBinstance database
+      SubnetIds: !Ref PrivateSubnetIds
+  DBinstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceClass: db.t2.small
+      AllocatedStorage: "5"
+      AutoMinorVersionUpgrade: false
+      BackupRetentionPeriod: 3
+      CopyTagsToSnapshot: true
+      DBName: travelbuddy
+      DBSubnetGroupName:
+        Ref: DBinstanceSubnetGroup
+      DeletionProtection: false
+      Engine: mysql
+      EngineVersion: "8.0"
+      MasterUsername: root
+      MasterUserPassword: labpassword
+      MultiAZ: false
+      Port: "3306"
+      PubliclyAccessible: false
+      StorageEncrypted: true
+      StorageType: gp2
+    UpdateReplacePolicy: Snapshot
+Outputs:
+  RDSEndpoint:
+    Description: RDS database endpoint
+    Value:
+      Fn::GetAtt:
+        - DBinstance
+        - Endpoint.Address
