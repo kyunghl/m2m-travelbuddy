@@ -66,7 +66,7 @@ docker run --rm \
   -e JDBC_CONNECTION_STRING="jdbc:mysql://${RDS_ENDPOINT}:3306/travelbuddy?useSSL=false" \
   -e JDBC_UID=root \
   -e JDBC_PWD=labpassword \
-  -dp 8080:8080 488861987964.dkr.ecr.ap-northeast-1.amazonaws.com/travelbuddy:latest
+  -dp 8080:8080 <YOUR_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/travelbuddy:latest
 
 # 컨테이너 이름을 확인
 docker ps
