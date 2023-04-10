@@ -126,7 +126,7 @@ spec:
     spec:
       containers:
       - name: travelbuddy
-        image: image: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/travelbuddy:latest
+        image: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/travelbuddy:latest
         imagePullPolicy: Always
         ports:
           - containerPort: 8080
@@ -168,7 +168,7 @@ EOF
 ```
 
 ```bash
-cat <<EOF> frontend-ingress.yaml
+cat <<EOF> ingress.yaml
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -198,9 +198,9 @@ EOF
 ### manifest로 배포하기
 
 ```bash
-kubectl apply -f frontend-deployment.yaml
-kubectl apply -f frontend-service.yaml
-kubectl apply -f frontend-ingress.yaml
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl apply -f ingress.yaml
 ```
 
 다음 명령어 수행 결과를 웹 브라우저에 붙여넣어 확인합니다.
